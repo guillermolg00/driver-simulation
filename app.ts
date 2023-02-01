@@ -102,10 +102,6 @@ getDecodedPolyline().then(originalPolyline => {
       let startCoords: ICoord = polyline[i];
       let endCoords: ICoord = polyline[i+1];
 
-      console.log("i =", i)
-      console.log("time =", time)
-      console.log(polyline.length)
-
       const currentPosition = getMobilePosition(startCoords, endCoords, speed, time += 1 )
       console.log("currentPosition", currentPosition);
       console.log("endCoords", endCoords)

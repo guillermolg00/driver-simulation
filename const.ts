@@ -1,3 +1,6 @@
+import * as dotenv from "dotenv"
+dotenv.config()
+
 interface MqttVariables {
   host: string | undefined;
   username: string | undefined;
@@ -6,13 +9,13 @@ interface MqttVariables {
 
 // Mqtt client variables
 export const mqttVariables: MqttVariables = {
-  host: "mqtt://172.31.25.238:1883",
-  username: "mqtt_api_898989",
-  password: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibXF0dF9hcGlfODk4OTg5IiwiaWQiOiI2MzBlN2NkMzIwZGZiMTAwMTEzNTI3ZjkiLCJpYXQiOjE2NjE4OTM4NDMsImV4cCI6MTcyNTAwOTA0M30.2MQzJOnfjTNuKAZbzbpW5rUfmAAaaVYdGkuRV0Xm9L0",
+  host: process.env.MQTT_HOST,
+  username: process.env.MQTT_USERNAME,
+  password: process.env.MQTT_PASSWORD,
 };
 
 // Here API key
-export const hereApiKey = "XMFMGCh95FNhUFoNuptgKIWUGrNOsZcOCZxfWroMTV8"
+export const hereApiKey = process.env.HERE_API_KEY
 
 // Here API routing base URL
 export const hereRoutingBaseUrl = "https://router.hereapi.com/v8/routes";
