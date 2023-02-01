@@ -1,0 +1,19 @@
+{
+  "name": "driver-simulation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node build/app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mqtt": "^4.3.7"
+  },
+  "devDependencies": {
+    "@types/mqtt": "^2.5.0",
+    "@types/node": "^18.11.18",
+    "typescript": "^4.9.4"
+  }
+}
