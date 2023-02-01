@@ -11,6 +11,14 @@ export const mqttVariables: MqttVariables = {
   password: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibXF0dF9hcGlfODk4OTg5IiwiaWQiOiI2MzBlN2NkMzIwZGZiMTAwMTEzNTI3ZjkiLCJpYXQiOjE2NjE4OTM4NDMsImV4cCI6MTcyNTAwOTA0M30.2MQzJOnfjTNuKAZbzbpW5rUfmAAaaVYdGkuRV0Xm9L0",
 };
 
+// Here API key
+export const hereApiKey = "XMFMGCh95FNhUFoNuptgKIWUGrNOsZcOCZxfWroMTV8"
+
+// Here API routing base URL
+export const hereRoutingBaseUrl = "https://router.hereapi.com/v8/routes";
+
+export const transportMode = "car";
+
 // Coordinates of the starting and ending points
 export const start: { lat: number; lon: number } = { lat: 25.740005, lon: -80.237815 };
 export const end: { lat: number; lon: number } = { lat: 25.971434, lon: -80.246684 };
@@ -19,4 +27,4 @@ export const end: { lat: number; lon: number } = { lat: 25.971434, lon: -80.2466
 export const driverId = "test-driver";
 
 // Speed of the mobile in km/h
-export const speed: number = 100;
+export const speed: number = 90;
