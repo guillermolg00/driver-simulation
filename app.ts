@@ -40,14 +40,13 @@ getDecodedPolyline().then((originalPolyline) => {
     lat: lat,
     lon: lon,
   }));
-  // console.log(polyline);
 
   if (mqttVariables.host === undefined) {
     throw new Error("MQTT_HOST is not defined");
   }
 
   // Connect to the MQTT broker
-  const client = mqtt.connect(mqttVariables.host, {
+  const client: mqtt.MqttClient = mqtt.connect(mqttVariables.host, {
     username: mqttVariables.username,
     password: mqttVariables.password,
   });
@@ -101,8 +100,6 @@ getDecodedPolyline().then((originalPolyline) => {
     return angle;
   };
   
-
-
   // Calculate the current position of the mobile
   const getMobilePosition = (startCoords, endCoords, speed, time) => {
     const distance = haversineDistance(startCoords, endCoords) * 1000;
@@ -129,7 +126,14 @@ getDecodedPolyline().then((originalPolyline) => {
     let time = 0;
 
     // Start the simulation loop
-    setInterval(() => {
+    const positionInterval = setInterval(() => {
+      if (i >= polyline.length - 1) {
+        clearInterval(positionInterval);
+        console.log("The simulation has ended. Please restart if you wish to begin again.");
+        return;
+      }
+
+
       let startCoords: ICoord = polyline[i];
       let endCoords: ICoord = polyline[i + 1];
 
@@ -139,11 +143,13 @@ getDecodedPolyline().then((originalPolyline) => {
         speed,
         (time += 1)
       );
-      // console.log("currentPosition", currentPosition);
-      // console.log("driverId", driverId)
-      // console.log("endCoords", endCoords)
-      // console.log("distance to end: " + haversineDistance(currentPosition, endCoords) + " km")
-      // console.log("--------------------------------------------------")
+
+      // Just used for logs purpose, comment if you dont needed
+      console.log("currentPosition", currentPosition);
+      console.log("driverId", driverId)
+      console.log("endCoords", endCoords)
+      console.log("distance to end: " + haversineDistance(currentPosition, endCoords) + " km")
+      console.log("--------------------------------------------------")
 
       // Calculate the angle based on the direction of movement
       const angle = calculateAngle(startCoords, endCoords);
@@ -166,7 +172,7 @@ getDecodedPolyline().then((originalPolyline) => {
     }, 1000);
   });
 
-  // Handle incoming messages on the "driverId" channel
+  // Handle incoming messages on the "driverId" topic (Just used for logs purpose, comment if you dont needed)
   client.on("message", (topic, message) => {
     if (topic === driverId) {
       console.log(`Received location update: ${message.toString()}`);
